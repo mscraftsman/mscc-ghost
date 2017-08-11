@@ -1,0 +1,53 @@
+{
+    "name": "mscc",
+    "description": "MSCC theme for Ghost based on Casper 2.0.2",
+    "demo": "https://www.mscc.mu",
+    "version": "0.0.1",
+    "engines": {
+        "ghost": ">=1.0.0"
+    },
+    "license": "MIT",
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.jpg",
+        "mobile": "assets/screenshot-mobile.jpg"
+    },
+    "author": {
+        "name": "Mauritius Software Craftsmanship Community",
+        "email": "hello@mscc.mu",
+        "url": "https://mscc.mu"
+    },
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Minimal",
+            "Magazine"
+        ]
+    },
+    "keywords": [
+        "ghost",
+        "theme"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mscraftsman/mscc-ghost.git"
+    },
+    "bugs": "https://github.com/mscraftsman/mscc-ghost/issues",
+    "contributors": "https://github.com/mscraftsman/mscc-ghost/graphs/contributors",
+    "devDependencies": {
+        "autoprefixer": "6.3.6",
+        "cssnano": "3.7.1",
+        "gulp": "3.9.1",
+        "gulp-livereload": "3.8.1",
+        "gulp-nodemon": "2.1.0",
+        "gulp-postcss": "6.1.1",
+        "gulp-sourcemaps": "1.6.0",
+        "gulp-util": "3.0.7",
+        "gulp-watch": "4.3.8",
+        "postcss-color-function": "2.0.1",
+        "postcss-custom-properties": "5.0.1",
+        "postcss-easy-import": "1.0.1"
+    },
+    "config": {
+        "posts_per_page": 12
+    }
+}
