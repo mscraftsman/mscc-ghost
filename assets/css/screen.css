@@ -36,8 +36,8 @@ body {
     display: block;
     width: 100%;
     height: 100%;
-    background-position: center center;
     background-size: cover;
+    background-position: center center;
     border-radius: 100%;
 }
 
@@ -51,6 +51,17 @@ body {
 /* 2. Layout - Page building blocks
 /* ---------------------------------------------------------- */
 
+.site-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.site-main {
+    z-index: 100;
+    flex-grow: 1;
+}
+
 /* Full width page blocks */
 .outer {
     position: relative;
@@ -59,9 +70,9 @@ body {
 
 /* Centered content container blocks */
 .inner {
-    margin: 0 auto;
-    max-width: 1040px;
     width: 100%;
+    max-width: 1040px;
+    margin: 0 auto;
 }
 
 /* Usage:
@@ -81,12 +92,12 @@ body {
     .home-template .post-feed,
     .tag-template .post-feed,
     .author-template .post-feed {
-        margin-top: -110px;
+        margin-top: -70px;
+        padding-top: 0;
     }
     .home-template .site-nav {
         position: relative;
         top: -70px;
-        z-index: 300;
     }
 }
 
@@ -134,19 +145,18 @@ body {
 }
 
 .site-header-content {
-    position: relative;
-    z-index: 300;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10vw 4vw;
     min-height: 200px;
     max-height: 450px;
+    padding: 10vw 4vw;
     text-align: center;
 }
 
 .site-title {
+    z-index: 10;
     margin: 0;
     padding: 0;
     font-size: 3.8rem;
@@ -158,6 +168,7 @@ body {
 }
 
 .site-description {
+    z-index: 10;
     margin: 0;
     padding: 5px 0;
     font-size: 2.2rem;
@@ -181,12 +192,12 @@ body {
 
 .site-nav {
     position: relative;
-    z-index: 100;
+    z-index: 300;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    overflow-y: hidden;
     height: 40px;
+    overflow-y: hidden;
     font-size: 1.2rem;
 }
 
@@ -199,7 +210,6 @@ body {
     padding-bottom: 80px;
     letter-spacing: 0.4px;
     white-space: nowrap;
-
     -webkit-overflow-scrolling: touch;
     -ms-overflow-scrolling: touch;
 }
@@ -216,6 +226,7 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     flex-shrink: 0;
     display: block;
     margin-right: 24px;
+    padding: 11px 0;
     color: #fff;
     font-size: 1.7rem;
     line-height: 1em;
@@ -337,19 +348,19 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .rss-button svg {
-    margin-bottom: 1px;
     height: 2.1rem;
+    margin-bottom: 1px;
     fill: #fff;
 }
 
 @media (max-width: 700px) {
     .site-header {
-        padding-left: 0;
         padding-right: 0;
+        padding-left: 0;
     }
     .site-nav-left {
-        padding-left: 4vw;
         margin-right: 0;
+        padding-left: 4vw;
     }
     .site-nav-right {
         display: none;
@@ -362,7 +373,6 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 .post-feed {
     position: relative;
-    z-index: 200;
     display: flex;
     flex-wrap: wrap;
     margin: 0 -20px;
@@ -373,9 +383,9 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
     flex: 1 1 300px;
     display: flex;
     flex-direction: column;
+    min-height: 300px;
     overflow: hidden;
     margin: 0 20px 40px;
-    min-height: 300px;
     background: #fff center center;
     background-size: cover;
     border-radius: 5px;
@@ -391,6 +401,9 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 
 .post-card-image-link {
     position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
 }
 
 .post-card-image {
@@ -442,10 +455,12 @@ The knock-on effect of this is ugly browser-scroll bars at the bottom, so 80px o
 }
 
 .author-profile-image {
-    margin-right: 5px;
     width: 25px;
     height: 25px;
+    margin-right: 5px;
     border-radius: 100%;
+
+    object-fit: cover;
 }
 
 .post-card-author {
@@ -470,6 +485,7 @@ The first (most recent) post in the list is styled to be bigger than the others 
     .home-template .post-feed .post-card:nth-child(6n+1):not(.no-image) .post-card-image-link {
         position: relative;
         flex: 1 1 auto;
+        border-radius: 5px 0 0 5px;
     }
 
     .home-template .post-feed .post-card:nth-child(6n+1):not(.no-image) .post-card-image {
@@ -533,10 +549,15 @@ The first (most recent) post in the list is styled to be bigger than the others 
 /* ^ Required to make .post-full-content:before/after z-index stacking work */
 
 .post-full-header {
+    max-width: 1040px;
     margin: 0 auto;
     padding: 6vw 3vw 3vw;
-    max-width: 1040px;
     text-align: center;
+}
+@media (max-width: 500px) {
+    .post-full-header {
+        padding: 14vw 3vw 10vw;
+    }
 }
 
 .post-full-meta {
@@ -564,8 +585,8 @@ The first (most recent) post in the list is styled to be bigger than the others 
 }
 
 .post-full-image {
-    margin: 0 -10vw -165px;
     height: 800px;
+    margin: 0 -10vw -165px;
     background: var(--lightgrey) center center;
     background-size: cover;
     border-radius: 5px;
@@ -573,8 +594,8 @@ The first (most recent) post in the list is styled to be bigger than the others 
 
 @media (max-width: 1170px) {
     .post-full-image {
-        margin: 0 -4vw -100px;
         height: 600px;
+        margin: 0 -4vw -100px;
         border-radius: 0;
     }
 }
@@ -587,9 +608,9 @@ The first (most recent) post in the list is styled to be bigger than the others 
 
 .post-full-content {
     position: relative;
+    min-height: 230px;
     margin: 0 auto;
     padding: 70px 100px 0;
-    min-height: 230px;
     font-family: Georgia, serif;
     font-size: 2.2rem;
     line-height: 1.6em;
@@ -651,20 +672,29 @@ The first (most recent) post in the list is styled to be bigger than the others 
     max-width: 920px;
 }
 
-.post-full-content p,
-.post-full-content ul,
-.post-full-content ol,
-.post-full-content dl,
-.post-full-content pre,
 .post-full-content h1,
 .post-full-content h2,
 .post-full-content h3,
 .post-full-content h4,
 .post-full-content h5,
 .post-full-content h6,
+.post-full-content p,
+.post-full-content ul,
+.post-full-content ol,
+.post-full-content dl,
+.post-full-content pre,
+.post-full-content blockquote,
 .post-full-comments,
 .footnotes {
     min-width: 100%;
+}
+
+.post-full-content li {
+    word-break: break-word;
+}
+
+.post-full-content li p {
+    margin: 0;
 }
 
 .post-template .kg-card-markdown > p:first-child {
@@ -699,8 +729,8 @@ The first (most recent) post in the list is styled to be bigger than the others 
 .post-full-content img,
 .post-full-content video {
     display: block;
-    margin: 1.5em auto;
     max-width: 1040px;
+    margin: 1.5em auto;
 }
 @media (max-width: 1040px) {
     .post-full-content img,
@@ -709,46 +739,56 @@ The first (most recent) post in the list is styled to be bigger than the others 
     }
 }
 
-/*
-If an image url has #full on the end, give it special wide styles.
+
+/* Full bleed images (#full)
 Super neat trick courtesy of @JoelDrapper
+
+Usage (In Ghost edtior):
+
+![img](/some/image.jpg#full)
+
 */
 .post-full-content img[src$="#full"] {
     width: 100vw;
     max-width: none;
 }
 
+
+/* Image captions
+
+Usage (In Ghost editor):
+
+![img](/some/image.jpg)
+<small>Your image caption</small>
+
+*/
+.post-full-content img + br + small {
+    display: block;
+    margin-top: -3em;
+    margin-bottom: 1.5em;
+}
+
+
 .post-full-content iframe {
-    margin: 0 auto 1.5em;
+    margin: 0 auto;
 }
 
 .post-full-content blockquote {
-    margin: 0 0 1.5em 0;
-    padding: 1.5em 0;
-    border: 0;
-    color: var(--blue);
-    font-size: 3rem;
-    line-height: 1.6em;
-    text-align: center;
-}
-
-.post-full-content blockquote:before {
-    content: open-quote;
+    margin: 0 0 1.5em;
+    padding: 0 1.5em;
+    border-left: #3eb0ef 3px solid;
 }
 
 .post-full-content blockquote p {
-    margin: 0;
+    margin: 0 0 1em 0;
+    color: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-style: italic;
 }
 
-@media (min-width: 1000px) {
-    .post-full-content blockquote {
-        max-width: 1060px;
-        width: 100vw;
-    }
-}
-
-.post-full-content blockquote + blockquote {
-    padding-top: 0;
+.post-full-content blockquote p:last-child {
+    margin-bottom: 0;
 }
 
 .post-full-content code {
@@ -761,10 +801,10 @@ Super neat trick courtesy of @JoelDrapper
 }
 
 .post-full-content pre {
+    max-width: 100%;
     overflow-x: auto;
     margin: 1.5em 0 3em;
     padding: 20px;
-    max-width: 100%;
     border: color(var(--darkgrey) l(-10%)) 1px solid;
     color: var(--whitegrey);
     font-size: 1.4rem;
@@ -794,9 +834,9 @@ Super neat trick courtesy of @JoelDrapper
     top: -15px;
     left: 50%;
     display: block;
-    margin-left: -10px;
     width: 1px;
     height: 30px;
+    margin-left: -10px;
     background: color(var(--lightgrey) l(+10%));
     box-shadow: #fff 0 0 0 5px;
     transform: rotate(45deg);
@@ -808,34 +848,87 @@ Super neat trick courtesy of @JoelDrapper
 .post-full-content h4,
 .post-full-content h5,
 .post-full-content h6 {
-    padding-top: 75px;
-    margin-top: -75px;
     color: color(var(--darkgrey) l(-5%));
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .post-full-content h1 {
-    font-size: 5rem;
+    margin: 0.5em 0 0.2em 0;
+    font-size: 4.6rem;
+    font-weight: 700;
+}
+@media (max-width: 500px) {
+    .post-full-content h1 {
+        font-size: 2.8rem;
+    }
 }
 
 .post-full-content h2 {
-    font-size: 3.5rem;
+    margin: 0.5em 0 0.2em 0;
+    font-size: 3.6rem;
+    font-weight: 700;
+}
+@media (max-width: 500px) {
+    .post-full-content h2 {
+        font-size: 2.6rem;
+    }
 }
 
 .post-full-content h3 {
-    font-size: 2.5rem;
+    margin: 0.5em 0 0.2em 0;
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+@media (max-width: 500px) {
+    .post-full-content h3 {
+        font-size: 2.2rem;
+    }
 }
 
 .post-full-content h4 {
-    font-size: 1.6rem;
+    margin: 0.5em 0 0.2em 0;
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+@media (max-width: 500px) {
+    .post-full-content h4 {
+        font-size: 2.2rem;
+    }
 }
 
 .post-full-content h5 {
-    font-size: 1.4rem;
+    display: block;
+    margin: 0.5em 0;
+    padding: 1em 0 1.5em;
+    border: 0;
+    color: var(--blue);
+    font-family: Georgia,serif;
+    font-size: 3.2rem;
+    line-height: 1.35em;
+    text-align: center;
+}
+@media (min-width: 1180px) {
+    .post-full-content h5 {
+        width: 100vw;
+        max-width: 1060px;
+    }
+}
+@media (max-width: 500px) {
+    .post-full-content h5 {
+        padding: 0 0 0.5em;
+        font-size: 2.2rem;
+    }
 }
 
 .post-full-content h6 {
-    font-size: 1.4rem;
+    margin: 0.5em 0 0.2em 0;
+    font-size: 2.3rem;
+    font-weight: 700;
+}
+@media (max-width: 500px) {
+    .post-full-content h6 {
+        font-size: 2rem;
+    }
 }
 
 .footnotes-sep {
@@ -878,60 +971,52 @@ Super neat trick courtesy of @JoelDrapper
     .post-full-content:after {
         display: none;
     }
-    .post-full-content h1 {
-        font-size: 2.9rem;
-    }
-    .post-full-content h2 {
-        font-size: 2.9rem;
-    }
-    .post-full-content h3 {
-        font-size: 2rem;
-    }
 }
 
 /* Tables */
 .post-full-content table {
-    display: table;
-    width: 100%;
+    display: inline-block;
+    width: auto;
     max-width: 100%;
     overflow-x: auto;
-    white-space: nowrap;
-    border-collapse: collapse;
-    border-spacing: 0;
     margin: 0.5em 0 2.5em;
+    border-spacing: 0;
+    border-collapse: collapse;
+    vertical-align: top;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 1.6rem;
+    white-space: nowrap;
 }
 
 .post-full-content table {
-    -webkit-overflow-scrolling: touch;
     background: radial-gradient(ellipse at left, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 0 center, radial-gradient(ellipse at right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 100% center;
     background-size: 10px 100%, 10px 100%;
     background-attachment: scroll, scroll;
     background-repeat: no-repeat;
+    -webkit-overflow-scrolling: touch;
 }
 
 .post-full-content table td:first-child {
     background-image: linear-gradient(to right, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
-    background-repeat: no-repeat;
     background-size: 20px 100%;
+    background-repeat: no-repeat;
 }
 
 .post-full-content table td:last-child {
     background-image: linear-gradient(to left, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
-    background-repeat: no-repeat;
-    background-position: 100% 0;
     background-size: 20px 100%;
+    background-position: 100% 0;
+    background-repeat: no-repeat;
 }
 
 .post-full-content table th {
-    font-size: 1.2rem;
-    letter-spacing: 0.2px;
     color: var(--darkgrey);
+    font-size: 1.2rem;
     font-weight: 700;
+    letter-spacing: 0.2px;
     text-align: left;
     text-transform: uppercase;
-    background: color(var(--whitegrey) l(+4%));
+    background-color: color(var(--whitegrey) l(+4%));
 }
 
 .post-full-content table th,
@@ -939,16 +1024,6 @@ Super neat trick courtesy of @JoelDrapper
     padding: 6px 12px;
     border: color(var(--whitegrey) l(-1%) s(-5%)) 1px solid;
 }
-
-@media (max-width: 800px) {
-    .post-full-content table {
-        display: inline-block;
-        vertical-align: top;
-        max-width: 100%;
-        width: auto;
-    }
-}
-
 
 
 /* 7.1. Subscribe Form
@@ -984,8 +1059,8 @@ Super neat trick courtesy of @JoelDrapper
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
     max-width: 420px;
+    margin: 0 auto;
 }
 
 .subscribe-form .form-group {
@@ -994,8 +1069,8 @@ Super neat trick courtesy of @JoelDrapper
 
 .subscribe-email {
     display: block;
-    padding: 10px;
     width: 100%;
+    padding: 10px;
     border: color(var(--lightgrey) l(+7%)) 1px solid;
     color: var(--midgrey);
     font-size: 1.8rem;
@@ -1015,9 +1090,9 @@ Super neat trick courtesy of @JoelDrapper
 
 .subscribe-form button {
     display: inline-block;
+    height: 41px;
     margin: 0 0 0 10px;
     padding: 0 20px;
-    height: 41px;
     outline: none;
     color: #fff;
     font-size: 1.5rem;
@@ -1072,9 +1147,9 @@ Super neat trick courtesy of @JoelDrapper
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 840px;
     margin: 0 auto;
     padding: 3vw 0 6vw 0;
-    max-width: 840px;
 }
 
 .author-card {
@@ -1083,9 +1158,9 @@ Super neat trick courtesy of @JoelDrapper
 }
 
 .author-card .author-profile-image {
-    margin-right: 15px;
     width: 60px;
     height: 60px;
+    margin-right: 15px;
 }
 
 .author-card-name {
@@ -1137,8 +1212,8 @@ Super neat trick courtesy of @JoelDrapper
 /* ---------------------------------------------------------- */
 
 .post-full-comments {
-    margin: 0 auto;
     max-width: 840px;
+    margin: 0 auto;
 }
 
 
@@ -1223,9 +1298,8 @@ Super neat trick courtesy of @JoelDrapper
 
 .read-next-divider svg {
     width: 40px;
-    fill: transparent;
     stroke: #fff;
-
+    fill: transparent;
     stroke-width: 0.5px;
     stroke-opacity: 0.65;
 }
@@ -1243,8 +1317,8 @@ Super neat trick courtesy of @JoelDrapper
     flex-direction: column;
     margin: 0 auto;
     padding: 0;
-    text-align: center;
     list-style: none;
+    text-align: center;
 }
 
 .read-next-card-content li {
@@ -1260,9 +1334,9 @@ Super neat trick courtesy of @JoelDrapper
     display: block;
     padding: 20px 0;
     border-bottom: rgba(255,255,255,0.3) 1px solid;
+    vertical-align: top;
     color: #fff;
     font-weight: 500;
-    vertical-align: top;
     transition: opacity 0.3s ease;
 }
 
@@ -1324,8 +1398,8 @@ Super neat trick courtesy of @JoelDrapper
     display: flex;
     align-items: center;
     color: var(--darkgrey);
-    font-weight: 700;
     line-height: 1.1em;
+    font-weight: 700;
 }
 
 .floating-header-logo a:hover {
@@ -1333,8 +1407,8 @@ Super neat trick courtesy of @JoelDrapper
 }
 
 .floating-header-logo img {
-    margin: 0 10px 0 0;
     max-height: 20px;
+    margin: 0 10px 0 0;
 }
 
 .floating-header-divider {
@@ -1385,9 +1459,9 @@ Super neat trick courtesy of @JoelDrapper
 }
 
 .floating-header-share-label svg {
-    margin: 0 5px 0 10px;
     width: 18px;
     height: 18px;
+    margin: 0 5px 0 10px;
     stroke: rgba(0,0,0,0.7);
     transform: rotate(90deg);
 }
@@ -1431,6 +1505,10 @@ Super neat trick courtesy of @JoelDrapper
 }
 
 .progress::-webkit-progress-value {
+    background-color: var(--blue);
+}
+
+.progress::-moz-progress-bar {
     background-color: var(--blue);
 }
 
@@ -1491,17 +1569,19 @@ Super neat trick courtesy of @JoelDrapper
 /* ---------------------------------------------------------- */
 
 .site-header-content .author-profile-image {
+    z-index: 10;
     flex-shrink: 0;
-    margin: 0 0 20px 0;
     width: 100px;
     height: 100px;
+    margin: 0 0 20px 0;
     box-shadow: rgba(255,255,255,0.1) 0 0 0 6px;
 }
 
 .site-header-content .author-bio {
+    z-index: 10;
     flex-shrink: 0;
-    margin: 5px 0 10px 0;
     max-width: 600px;
+    margin: 5px 0 10px 0;
     font-size: 2rem;
     line-height: 1.3em;
     font-weight: 300;
@@ -1510,6 +1590,7 @@ Super neat trick courtesy of @JoelDrapper
 }
 
 .site-header-content .author-meta {
+    z-index: 10;
     flex-shrink: 0;
     display: flex;
     justify-content: center;
@@ -1652,8 +1733,8 @@ Super neat trick courtesy of @JoelDrapper
 }
 
 .subscribe-overlay-description {
-    margin: 0 auto 50px;
     max-width: 650px;
+    margin: 0 auto 50px;
     font-family: Georgia, serif;
     font-size: 3rem;
     line-height: 1.3em;
@@ -1665,8 +1746,8 @@ Super neat trick courtesy of @JoelDrapper
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
     max-width: 500px;
+    margin: 0 auto;
 }
 
 .subscribe-overlay .form-group {
@@ -1675,8 +1756,8 @@ Super neat trick courtesy of @JoelDrapper
 
 .subscribe-overlay .subscribe-email {
     display: block;
-    padding: 14px 20px;
     width: 100%;
+    padding: 14px 20px;
     border: none;
     color: var(--midgrey);
     font-size: 2rem;
@@ -1697,9 +1778,9 @@ Super neat trick courtesy of @JoelDrapper
 
 .subscribe-overlay button {
     display: inline-block;
+    height: 52px;
     margin: 0 0 0 15px;
     padding: 0 25px;
-    height: 52px;
     outline: none;
     color: #fff;
     font-size: 1.7rem;

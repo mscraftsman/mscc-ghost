@@ -1,10 +1,10 @@
 {
     "name": "mscc",
-    "description": "MSCC theme for Ghost based on Casper 2.0.2",
+    "description": "Ghost theme of Mauritius Software Craftsmanship Community.",
     "demo": "https://www.mscc.mu",
-    "version": "0.0.1",
+    "version": "2.1.4",
     "engines": {
-        "ghost": ">=1.0.0"
+        "ghost": ">=1.2.0"
     },
     "license": "MIT",
     "screenshots": {
@@ -14,7 +14,7 @@
     "author": {
         "name": "Mauritius Software Craftsmanship Community",
         "email": "hello@mscc.mu",
-        "url": "https://mscc.mu"
+        "url": "https://www.mscc.mu"
     },
     "gpm": {
         "type": "theme",
@@ -25,7 +25,8 @@
     },
     "keywords": [
         "ghost",
-        "theme"
+        "theme",
+        "community"
     ],
     "repository": {
         "type": "git",
@@ -43,6 +44,7 @@
         "gulp-sourcemaps": "1.6.0",
         "gulp-util": "3.0.7",
         "gulp-watch": "4.3.8",
+        "gulp-zip": "4.0.0",
         "postcss-color-function": "2.0.1",
         "postcss-custom-properties": "5.0.1",
         "postcss-easy-import": "1.0.1"
