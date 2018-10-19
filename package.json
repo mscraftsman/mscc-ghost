@@ -2,7 +2,7 @@
     "name": "mscc",
     "description": "Ghost theme of Mauritius Software Craftsmanship Community.",
     "demo": "https://www.mscc.mu",
-    "version": "2.1.4",
+    "version": "2.1.5",
     "engines": {
         "ghost": ">=1.2.0"
     },
@@ -33,7 +33,9 @@
         "url": "https://github.com/mscraftsman/mscc-ghost.git"
     },
     "bugs": "https://github.com/mscraftsman/mscc-ghost/issues",
-    "contributors": "https://github.com/mscraftsman/mscc-ghost/graphs/contributors",
+    "contributors": [
+        "https://github.com/mscraftsman/mscc-ghost/graphs/contributors"
+    ],
     "devDependencies": {
         "autoprefixer": "6.3.6",
         "cssnano": "3.7.1",
