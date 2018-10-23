@@ -2,7 +2,7 @@
     "name": "mscc",
     "description": "Ghost theme of Mauritius Software Craftsmanship Community.",
     "demo": "https://www.mscc.mu",
-    "version": "2.1.5",
+    "version": "2.1.6",
     "engines": {
         "ghost": ">=1.2.0"
     },
