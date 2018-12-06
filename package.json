@@ -2,14 +2,19 @@
     "name": "mscc",
     "description": "Ghost theme of Mauritius Software Craftsmanship Community.",
     "demo": "https://www.mscc.mu",
-    "version": "2.1.6",
+    "version": "2.2.0",
     "engines": {
-        "ghost": ">=1.2.0"
+        "ghost": ">=2.0.0"
     },
     "license": "MIT",
     "screenshots": {
         "desktop": "assets/screenshot-desktop.jpg",
         "mobile": "assets/screenshot-mobile.jpg"
+    },
+    "scripts": {
+        "dev": "gulp",
+        "zip": "gulp zip",
+        "test": "gscan ."
     },
     "author": {
         "name": "Mauritius Software Craftsmanship Community",
@@ -26,6 +31,7 @@
     "keywords": [
         "ghost",
         "theme",
+        "ghost-theme",
         "community"
     ],
     "repository": {
@@ -39,9 +45,9 @@
     "devDependencies": {
         "autoprefixer": "6.3.6",
         "cssnano": "3.7.1",
+        "gscan": "^2.0.0",
         "gulp": "3.9.1",
         "gulp-livereload": "3.8.1",
-        "gulp-nodemon": "2.1.0",
         "gulp-postcss": "6.1.1",
         "gulp-sourcemaps": "1.6.0",
         "gulp-util": "3.0.7",
@@ -49,7 +55,9 @@
         "gulp-zip": "4.0.0",
         "postcss-color-function": "2.0.1",
         "postcss-custom-properties": "5.0.1",
-        "postcss-easy-import": "1.0.1"
+        "postcss-easy-import": "1.0.1",
+        "gulp-filter": "5.1.0",
+        "gulp-uglify": "3.0.1"
     },
     "config": {
         "posts_per_page": 12
