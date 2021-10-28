@@ -4,7 +4,7 @@
 {{!-- The big featured header, it uses blog cover image as a BG if available --}}
 {{#tag}}
 {{!-- If we have a tag cover, display that - else blog cover - else nothing --}}
-<header class="site-header outer {{#if feature_image}}" style="background-image: url({{feature_image}}){{else}}{{#if @blog.cover_image}}" style="background-image: url({{@blog.cover_image}}){{else}}no-cover{{/if}}{{/if}}">
+<header class="site-header outer {{#if feature_image}}" style="background-image: url({{feature_image}}){{else}}{{#if @blog.cover_image}}" style="background-image: url({{@site.cover_image}}){{else}}no-cover{{/if}}{{/if}}">
     <div class="inner">
         {{> "site-nav"}}
         <div class="site-header-content">

@@ -1,13 +1,14 @@
 var gulp = require('gulp');
 
 // gulp plugins and utils
-var gutil = require('gulp-util');
 var livereload = require('gulp-livereload');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var zip = require('gulp-zip');
 var uglify = require('gulp-uglify');
 var filter = require('gulp-filter');
+
+var log = require('fancy-log');
 
 // postcss plugins
 var autoprefixer = require('autoprefixer');
@@ -17,20 +18,13 @@ var customProperties = require('postcss-custom-properties');
 var easyimport = require('postcss-easy-import');
 
 var swallowError = function swallowError(error) {
-    gutil.log(error.toString());
-    gutil.beep();
+    log.error(error.toString());
     this.emit('end');
 };
 
 var nodemonServerInit = function () {
     livereload.listen(1234);
 };
-
-gulp.task('build', ['css', 'js'], function (/* cb */) {
-    return nodemonServerInit();
-});
-
-gulp.task('generate', ['css', 'js']);
 
 gulp.task('css', function () {
     var processors = [
@@ -64,14 +58,21 @@ gulp.task('js', function () {
         .pipe(livereload());
 });
 
+gulp.task('build', gulp.series(['css', 'js'], function (/* cb */) {
+    return nodemonServerInit();
+}));
+
+gulp.task('generate', gulp.series(['css', 'js']));
+
 gulp.task('watch', function () {
     gulp.watch('assets/css/**', ['css']);
 });
 
-gulp.task('zip', ['css', 'js'], function () {
+gulp.task('zip', gulp.series(['css', 'js'], function () {
     var targetDir = 'dist/';
     var themeName = require('./package.json').name;
-    var filename = themeName + '.zip';
+    var version = require('./package.json').version;
+    var filename = themeName + '-' + version + '.zip';
 
     return gulp.src([
         '**',
@@ -80,8 +81,8 @@ gulp.task('zip', ['css', 'js'], function () {
     ])
         .pipe(zip(filename))
         .pipe(gulp.dest(targetDir));
-});
+}));
 
-gulp.task('default', ['build'], function () {
+gulp.task('default', gulp.series(['build'], function () {
     gulp.start('watch');
-});
+}));
